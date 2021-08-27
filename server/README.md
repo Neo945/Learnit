@@ -23,18 +23,6 @@ yarn install
     -   [Commands](#commands)
     -   [Environment Variables](#environment-variables)
     -   [Project Structure](#project-structure)
-    -   [API Documentation](#api-documentation)
-        -   [API Endpoints](#api-endpoints)
-    -   [Error Handling](#error-handling)
-    -   [Validation](#validation)
-    -   [Authentication](#authentication)
-    -   [Authorization](#authorization)
-    -   [Logging](#logging)
-    -   [Custom Mongoose Plugins](#custom-mongoose-plugins)
-        -   [toJSON](#tojson)
-        -   [paginate](#paginate)
-    -   [Linting](#linting)
-
 ## Technologies
 
 -   **NoSQL database**: [MongoDB](https://www.mongodb.com) object data modeling using [Mongoose](https://mongoosejs.com)
