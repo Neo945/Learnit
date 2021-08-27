@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { isEmail } = require('validator').default;
-const { isStrongPassword } = require('validator').default;
+const { isStrongPassword, isMobilePhone } = require('validator').default;
 
 const { Schema } = mongoose;
 
@@ -36,6 +36,7 @@ const UserSchema = new Schema(
         timestamps: true,
     }
 );
+
 UserSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
@@ -68,4 +69,44 @@ UserSchema.statics.savePass = async function (username, password) {
 };
 
 const User = mongoose.model('user', UserSchema);
-module.exports = User;
+
+const memberSchema = new Schema({
+    isTeacher: {
+        type: Boolean,
+        default: false,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3,
+        maxlength: 50,
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 100,
+    },
+    phone: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 10,
+        maxlength: 10,
+        validate: [isMobilePhone, 'Invalid Phone number'],
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true,
+        validate: {
+            // eslint-disable-next-line no-return-await
+            validator: async (user) => mongoose.Types.ObjectId.isValid(user) && (await User.exists({ _id: user })),
+        },
+    },
+});
+
+const Member = mongoose.model('member', memberSchema);
+module.exports = { User, Member };

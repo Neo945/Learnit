@@ -3,17 +3,17 @@ const cors = require('cors');
 const path = require('path');
 require('./config/passport.config');
 const cp = require('cookie-parser');
-const cs = require('cookie-session');
+// const cs = require('cookie-session');
 // const passport = require('passport');
 
 const app = express();
 
-app.use(
-    cs({
-        maxAge: 24 * 60 * 60 * 1000,
-        keys: require('./config/config').SECRET_KEY,
-    })
-);
+// app.use(
+//     cs({
+//         maxAge: 24 * 60 * 60 * 1000,
+//         keys: require('./config/config').SECRET_KEY,
+//     })
+// );
 // app.use(passport.initialize());
 // app.use(passport.session());
 app.use(cp());

@@ -1,5 +1,7 @@
+/* eslint-disable no-return-await */
 const mongoose = require('mongoose');
 const validator = require('validator').default;
+const { Member } = require('./user');
 
 const { Schema } = mongoose;
 
@@ -26,11 +28,21 @@ const classroomSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'teacher',
             required: true,
+            validate: {
+                validator: async (user) =>
+                    mongoose.Types.ObjectId.isValid(user) && user.isTeacher && (await Member.exists({ _id: user })),
+                message: 'You are not a teacher teacher',
+            },
         },
         students: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'student',
+                validate: {
+                    validator: async (user) =>
+                        mongoose.Types.ObjectId.isValid(user) && !user.isTeacher && (await Member.exists({ _id: user })),
+                    message: 'You are not a student',
+                },
             },
         ],
     },
