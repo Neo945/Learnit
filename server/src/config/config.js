@@ -11,9 +11,10 @@ const schema = Joi.object()
         SECRET_KEY: Joi.string().required().description('Secret key for jwt'),
         CLIENT_ID: Joi.string().required().description('GCP client oauth id'),
         CLIENT_SECRET: Joi.string().required().description('Secret key GCP oauth'),
-        // S3_ACCESS_KEY_ID: Joi.string().required().description('Access key user'),
-        // SECRET_S3_ACCESS_KEY: Joi.string().required().description('Secret key user'),
-        // S3_BUCKET_REGION: Joi.string().required().description('S3 bucket region'),
+        S3_ACCESS_KEY_ID: Joi.string().required().description('Access key user'),
+        SECRET_S3_ACCESS_KEY: Joi.string().required().description('Secret key user'),
+        S3_BUCKET_REGION: Joi.string().required().description('S3 bucket region'),
+        S3_BUCKET_NAME: Joi.string().required().description('S3 bucket name'),
     })
     .unknown();
 
