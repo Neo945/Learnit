@@ -26,7 +26,7 @@ const classroomSchema = new Schema(
         },
         teacher: {
             type: Schema.Types.ObjectId,
-            ref: 'teacher',
+            ref: 'member',
             required: true,
             validate: {
                 validator: async (user) =>
@@ -37,7 +37,7 @@ const classroomSchema = new Schema(
         students: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'student',
+                ref: 'member',
                 validate: {
                     validator: async (user) =>
                         mongoose.Types.ObjectId.isValid(user) && !user.isTeacher && (await Member.exists({ _id: user })),
