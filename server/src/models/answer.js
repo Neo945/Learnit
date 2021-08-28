@@ -7,6 +7,7 @@ const AnswerSchema = new Schema(
         typeans: {
             type: String,
             required: true,
+            enum: ['text', 'multi', 'mcq'],
         },
         answerMCQ: [
             {

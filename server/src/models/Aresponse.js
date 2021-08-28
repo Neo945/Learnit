@@ -4,6 +4,11 @@ const { Schema } = mongoose;
 
 const AresponseSchema = new Schema(
     {
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'user',
+            required: true,
+        },
         question: {
             type: Schema.Types.ObjectId,
             ref: 'question',

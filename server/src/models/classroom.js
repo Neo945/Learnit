@@ -19,7 +19,6 @@ const classroomSchema = new Schema(
         },
         description: {
             type: String,
-            required: true,
             trim: true,
             minlength: 3,
             maxlength: 500,
