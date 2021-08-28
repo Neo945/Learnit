@@ -17,6 +17,16 @@ const taskSchema = new Schema(
             enum: ['todo', 'in-progress', 'done'],
             default: 'todo',
         },
+        classroom: {
+            type: Schema.Types.ObjectId,
+            ref: 'classroom',
+            required: true,
+            validate: {
+                validator: function (v) {
+                    return mongoose.Types.ObjectId.isValid(v);
+                },
+            },
+        },
     },
     {
         timestamps: true,
