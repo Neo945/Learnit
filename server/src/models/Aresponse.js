@@ -9,22 +9,13 @@ const AresponseSchema = new Schema(
             ref: 'user',
             required: true,
         },
-        question: {
-            type: Schema.Types.ObjectId,
-            ref: 'question',
-            required: true,
-        },
-        answerMCQ: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-        answerTF: {
-            type: String,
-            required: true,
-            trim: true,
-            default: '',
-        },
+        answers: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'answer',
+                required: true,
+            },
+        ],
     },
     {
         timestamps: true,
