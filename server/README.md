@@ -1,4 +1,4 @@
-# Hipoz api
+# LearnIt API
 
 ## Manual Installation
 
@@ -84,7 +84,7 @@ JWT_SECRET=mysecretkey
 
 ## Project Structure
 
-```
+```javascript
 src\
  |--config\         # Environment variables and configuration related things
  |--controllers\    # Route controllers
